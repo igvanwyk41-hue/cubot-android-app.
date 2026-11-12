@@ -2,7 +2,7 @@
 set -euo pipefail
 GRADLE_VERSION="8.9"
 GRADLE_HOME_DIR="${HOME}/.gradle/cubot-gradle-${GRADLE_VERSION}"
-if [ ! -x "${GRADLE_HOME_DIR}/bin/gradle" ]; then
+if [ ! -x "${GRADLE_HOME_DIR}/dist/bin/gradle" ]; then
   mkdir -p "${GRADLE_HOME_DIR}"
   ARCHIVE="/tmp/gradle-${GRADLE_VERSION}-bin.zip"
   curl -fsSL "https://services.gradle.org/distributions/gradle-${GRADLE_VERSION}-bin.zip" -o "${ARCHIVE}"
