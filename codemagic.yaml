@@ -8,14 +8,10 @@ workflows:
         PACKAGE_NAME: "com.cubot.mobile"
       java: 17
     scripts:
-      - name: Check Android project
-        script: |
-          gradle --version
-          test -f app/src/main/assets/index.html
-          test -f app/src/main/java/com/cubot/mobile/MainActivity.java
+      - name: Set Android SDK location
+        script: echo "sdk.dir=$ANDROID_SDK_ROOT" > "$CM_BUILD_DIR/local.properties"
       - name: Build installable Android APK
-        script: |
-          gradle --no-daemon clean assembleDebug
+        script: bash gradlew --no-daemon clean assembleDebug
     artifacts:
       - app/build/outputs/apk/debug/*.apk
       - app/build/outputs/**/output-metadata.json
