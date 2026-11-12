@@ -8,9 +8,14 @@ workflows:
         PACKAGE_NAME: "com.cubot.mobile"
       java: 17
     scripts:
-      - name: Build debug APK
+      - name: Check Android project
         script: |
           gradle --version
-          gradle assembleDebug
+          test -f app/src/main/assets/index.html
+          test -f app/src/main/java/com/cubot/mobile/MainActivity.java
+      - name: Build installable Android APK
+        script: |
+          gradle --no-daemon clean assembleDebug
     artifacts:
       - app/build/outputs/apk/debug/*.apk
+      - app/build/outputs/**/output-metadata.json
